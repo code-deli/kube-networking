@@ -1,0 +1,10 @@
+- machine: kube-master
+  box: generic/rocky8
+  ip: 192.168.0.20
+- machine: kube-node1
+  box: generic/rocky8
+  ip: 192.168.0.21
+- machine: kube-node2
+  box: generic/rocky8
+  ip: 192.168.0.22
+

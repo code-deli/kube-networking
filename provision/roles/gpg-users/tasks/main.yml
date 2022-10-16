@@ -1,0 +1,47 @@
+- name: Ensure group developers exist
+  group:
+    name: developers
+    state: present
+
+- name: creating user marge
+  user:
+    name: marge
+    uid: 1040
+    group: developers
+
+- name: adding marge to groups
+  user:
+    name: marge
+    groups: wheel
+    append: yes
+
+- name: creating user lisa
+  user:
+    name: lisa
+    uid: 1041
+    group: developers
+
+- name: adding lisa to groups
+  user:
+    name: lisa
+    groups: wheel
+    append: yes
+
+
+- name: Add user "lisa" to sudo
+  lineinfile:
+    path: /etc/sudoers.d/lisa
+    line: 'lisa ALL=(ALL) NOPASSWD: ALL'
+    state: present
+    mode: 0440
+    create: yes
+    validate: 'visudo -cf %s'
+
+- name: Add user "marge" to sudo
+  lineinfile:
+    path: /etc/sudoers.d/lisa
+    line: 'marge ALL=(ALL) NOPASSWD: ALL'
+    state: present
+    mode: 0440
+    create: yes
+    validate: 'visudo -cf %s'
